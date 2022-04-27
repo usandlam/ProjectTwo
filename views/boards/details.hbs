@@ -1,0 +1,40 @@
+<div class="col">
+<div class="row">
+
+</div>
+{{#with boardInfo}}
+<div class="row">
+    
+<div class="card movie-info">
+  <img class="card-img-top" id="movie-img" src="/image/{{id}}/top" alt="Board Top">
+  <div class="card-body">
+    <h5 class="card-title">{{name}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
+    <p class="card-text">{{tag}}</p>
+
+    </div>
+    <div class="card-header">
+        Cast
+    </div>    
+  <ul class="list-group list-group-flush">
+    {{#each altTag}}
+        <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            {{altTag}}
+    <span class="badge "><small>text</small></span>
+
+        </div>
+        <small class="text-muted">More Text</small>            
+        
+        </li> 
+    {{/each}}      
+  </ul>
+    <div class="card-body">
+    <form action="/boards/{{_id}}/delete" method="POST">
+       <button type="submit" class="btn btn-danger">Delete</button>
+         <a href="/boards/{{_id}}/edit" class="btn btn-info">Edit</a>
+    </form>
+    </div>
+</div>
+{{/with}}
+</div>

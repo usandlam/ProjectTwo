@@ -1,0 +1,11 @@
+<a href="/" class="back">Search Again</a>
+<div class="container pb-5">
+    <h1 onclick="history.back()">Board List</h1>
+    <div class="row">
+        <div class="card-deck">
+            {{#each boardList}}
+                {{> board_search_results}} 
+            {{/each}}
+        </div>
+    </div>
+</div>

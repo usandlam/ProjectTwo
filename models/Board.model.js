@@ -2,16 +2,19 @@ const { Schema, model } = require("mongoose");
 
 const boardSchema = new Schema(
     {
-      name: String,  
-      typeTag: [ { type: Schema.Types.ObjectId, ref: "Tag"} ],
+      name: { type: String, trim: true},
+      tag: { type: Schema.Types.ObjectId, ref: "Tag"},
       altTag: [String],
-      topSVG: String,
-      bottomSVG: String,
+      topSVG: { type: String, trim: true},
+      bottomSVG: { type: String, trim: true},
       postedBy: { type: Schema.Types.ObjectId, ref: "User"},
-      description: String,
-      url: String,
-      pcb: Boolean,
-      
+      description: { type: String, trim: true},
+      url: { type: String, trim: true},
+      author: { type: String, trim: true},
+      features: {
+          type: [String],
+          enum: ['gerbers','guide'],
+      },
     },
     {
       timestamps: true

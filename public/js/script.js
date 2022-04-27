@@ -7,18 +7,24 @@ document.addEventListener(
 );
 
 function setCurrentPg(){
-  let ele = 'nav-home'; //placeholder
+  let ele = 'navbar-brand'; //placeholder
   const onPage = window.location.pathname;
-
-  if(onPage.includes('login'))
-    ele = 'nav-login';
-  else if(onPage.includes('signup'))
-    ele = 'nav-signup'
-  else if(onPage.includes('profile'))
-    ele = 'nav-profile'    
-  // else 
-  //   ele = 'nav-home'
-
-  document.getElementById(ele).classList.toggle('active');
-  return true;
+  if(onPage.includes('movie')){
+    if(onPage.includes('create')){
+      document.getElementById('nav-drop').classList.toggle('active');
+      ele = 'nav-drop-movie';
+    }else
+      ele = 'nav-movie';
+  }else if(onPage.includes('celeb')){
+    if(onPage.includes('create')){
+      document.getElementById('nav-drop').classList.toggle('active');
+      ele = 'nav-drop-celeb';
+    }else
+      ele = 'nav-celeb';
+  }else{
+      ele = 'nav-home';
   }
+  document.getElementById(ele).classList.toggle('active');
+  document.getElementById(ele).innerHTML += `<span class="sr-only">(current)</span>`;
+  return true;
+}
