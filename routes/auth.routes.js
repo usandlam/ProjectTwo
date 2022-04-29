@@ -17,6 +17,7 @@ const control = require('../middleware/mustBeLoggedIn.js');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 router.post('/logout', (req, res, next) => {
+    
     req.session.destroy(err => {
       if (err) next(err);
       res.redirect('/');
@@ -27,11 +28,7 @@ router.get('/login', (req, res) => {
   res.render('auth/login', { flash: req.flash('error') });
 });
 
-router.post(
-    '/login',
-    passport.authenticate(
-      'local',
-      {
+router.post('/login', passport.authenticate( 'local', {
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true

@@ -1,5 +1,11 @@
 <h1>{{appTitle}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+<p>Welcome</p>
+
+      {{#if flash}}
+        <div class="alert alert-danger" role="alert">
+            <p>{{flash}}</p>
+        </div>
+      {{/if}}
 
 <div class="jumbotron">
   <h1 class="display-4">Hello, world!</h1>
@@ -10,3 +16,5 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
 </div>
+
+

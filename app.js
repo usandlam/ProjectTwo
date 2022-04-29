@@ -17,6 +17,8 @@ const app = express();
 
 const flash = require('connect-flash');
 
+const sessionTrack = require("./middleware/sessionTrack");
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
@@ -86,6 +88,19 @@ app.locals.appTitle = `${capitalized(projectName)}`;
 
 hbs.registerPartials(__dirname + "/views/partials");
 
+/*
+app.use( (req,res,next) => {
+    console.log(req.session);
+    console.log(app.locals);
+    if(req.isAuthenticated){
+        app.locals.userSession = req.session.passport;
+    }else{
+        app.locals.userSession = undefined;
+    }
+    next();
+});
+*/
+app.use(sessionTrack);
 
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
@@ -99,5 +114,7 @@ app.use('/', boardRouter);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
+
+// app.use(sessionTrack());
 
 module.exports = app;

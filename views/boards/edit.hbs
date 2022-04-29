@@ -1,18 +1,16 @@
-<h2>Add a Board</h2>
+<h2>Update a Board</h2>
 <div class="row">
   <div class="col-md-6">
       {{!-- enctype="multipart/form-data" --}}
-    <form action="/create" method="POST" > 
+    <form action="/board/{{boardInfo.id}}/edit" method="POST" enctype="multipart/form-data"> 
       {{#if flash}}
         <div class="alert alert-danger" role="alert">
             <p>{{flash}}</p>
-            {{flash.type}}
-            {{flash.message}}
         </div>
-      {{/if}}
+      {{/if}}    
       <div class="form-group">
         <label>Name:
-          <input type="text" name="name" class="form-control" {{#if attempt.name}} value="{{attempt.name}}" {{/if}}/>
+          <input type="text" name="name" class="form-control" {{#if boardInfo.name}} value="{{boardInfo.name}}" {{/if}}/>
         </label>    
       </div>
        <div class="form-group">
@@ -26,37 +24,39 @@
       </div>
       <div class="form-group">
         <label>Author:
-          <input type="text" name="author" class="form-control" {{#if attempt.author}} value="{{attempt.author}}" {{/if}}/>
+          <input type="text" name="author" class="form-control" {{#if boardInfo.author}} value="{{boardInfo.author}}" {{/if}}/>
         </label>
       </div>      
       <div class="form-group">
         <label>Description:
-          <textarea name="description" cols="30" rows="4" class="form-control">{{#if attempt.description}}{{attempt.description}}{{/if}}</textarea>
+          <textarea name="description" cols="30" rows="4" class="form-control">{{#if boardInfo.description}}{{boardInfo.description}}{{/if}}</textarea>
         </label>
       </div>
 
       <div class="form-group">
         <label>URL:
-          <input type="text" name="url" class="form-control" {{#if attempt.url}} value="{{attempt.url}}" {{/if}}/>
+          <input type="text" name="url" class="form-control" {{#if boardInfo.url}} value="{{boardInfo.url}}" {{/if}}/>
         </label>
       </div>      
  
       <div class="form-group-inline">
         <label>Top Board Image (SVG):
-          <textarea name="topSVG" cols="10" rows="4" class="form-control">{{#if attempt.topSVG}}{{attempt.topSVG}}{{/if}}</textarea>
+          <input type="file" ACCEPT="text/svg" name="whocares" id="idexample" />
+          {{#if boardInfo.topSVG}}{{boardInfo.topSVG}}{{/if}}
+          {{!-- <pre><textarea name="topSVG" cols="10" rows="4" class="form-control">{{#if boardInfo.topSVG}}{{boardInfo.topSVG}}{{/if}}</textarea></pre> --}}
           {{!-- <input type="file" name="movie-cover-image" class="form-control-file" /> --}}
         </label>
       {{!-- </div> --}}
       {{!-- <div class="form-group"> --}}
         <label>Bottom Board Image (SVG):
-          <textarea name="bottomSVG" cols="10" rows="4" class="form-control">{{#if attempt.bottomSVG}}{{attempt.bottomSVG}}{{/if}}</textarea>
+          {{!-- <textarea name="bottomSVG" cols="10" rows="4" class="form-control">{{#if boardInfo.bottomSVG}}{{boardInfo.bottomSVG}}{{/if}}</textarea> --}}
           {{!-- <input type="file" name="movie-cover-image" class="form-control-file" /> --}}
         </label>        
       </div>
 
       <div class="form-group">
         <label>Secondary Tags: (separated by commas)
-            <textarea name="altTags" cols="25" rows="1" class="form-control">{{#if attempt.altTags}}{{attempt.altTags}}{{/if}}</textarea>
+            <textarea name="altTags" cols="25" rows="1" class="form-control">{{#if boardInfo.altTags}}{{boardInfo.altTags}}{{/if}}</textarea>
         </label>
       </div>
 
