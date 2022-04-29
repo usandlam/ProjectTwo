@@ -31,6 +31,8 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+app.set('trust proxy', 1);
+
 app.use(
     session({
       secret: process.env.SESSION_SECRET,

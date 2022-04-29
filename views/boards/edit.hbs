@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-6">
       {{!-- enctype="multipart/form-data" --}}
-    <form action="/board/{{boardInfo.id}}/edit" method="POST" enctype="multipart/form-data"> 
+    <form action="/board/{{boardInfo.id}}/edit" method="POST" > 
       {{#if flash}}
         <div class="alert alert-danger" role="alert">
             <p>{{flash}}</p>
@@ -40,15 +40,13 @@
       </div>      
  
       <div class="form-group-inline">
-        <label>Top Board Image (SVG):
-          <input type="file" ACCEPT="text/svg" name="whocares" id="idexample" />
-          {{#if boardInfo.topSVG}}{{boardInfo.topSVG}}{{/if}}
+        {{!-- <label>Top Board Image (SVG): --}}
           {{!-- <pre><textarea name="topSVG" cols="10" rows="4" class="form-control">{{#if boardInfo.topSVG}}{{boardInfo.topSVG}}{{/if}}</textarea></pre> --}}
           {{!-- <input type="file" name="movie-cover-image" class="form-control-file" /> --}}
         </label>
       {{!-- </div> --}}
       {{!-- <div class="form-group"> --}}
-        <label>Bottom Board Image (SVG):
+        {{!-- <label>Bottom Board Image (SVG): --}}
           {{!-- <textarea name="bottomSVG" cols="10" rows="4" class="form-control">{{#if boardInfo.bottomSVG}}{{boardInfo.bottomSVG}}{{/if}}</textarea> --}}
           {{!-- <input type="file" name="movie-cover-image" class="form-control-file" /> --}}
         </label>        
@@ -77,10 +75,8 @@
             <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
             </div>
         
-      </div>      
- 
-
-      <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
     </form>
   </div>
 </div>

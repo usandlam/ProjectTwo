@@ -101,8 +101,8 @@ router.get("/list/:q", async (req, res, next) => {
         console.log(err);
     }
 });
-
-router.get("/board/:id/edit", control(), async (req, res, next) => {
+                        //control(),
+router.get("/board/:id/edit",  async (req, res, next) => {
     const id = req.params.id;
     const tagList = await Tag.find();
     try{
