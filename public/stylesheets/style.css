@@ -29,6 +29,11 @@ h1 {
   width: 3rem;
 }
 
+#jumbo-logo{
+  width: 5rem;
+  transform: rotate(45deg);
+}
+
 .detail-pg-img{
   max-width: 25rem;
 }
@@ -57,6 +62,10 @@ h1 {
 
 } */
 
+#board-preview{
+  width: 25rem;
+  background-color: grey;
+}
 
 .scene {
   width:10em;

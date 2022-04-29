@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light nav-tabs border-0 m-1">
-  <img src="/images/logothing-lesslegs-svg.png" id="nav-logo" alt="Ockt Logo">
-  <a class="navbar-brand pl-1" href="/">Ockt</a>
+  <a class="navbar-brand pl-1" href="/"><img src="/images/logothing-lesslegs-svg.png" id="nav-logo" alt="Ockt Logo"> Ockt</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,8 +19,8 @@
 {{/if}}         
     <a class="nav-item nav-link" href="#">Getting Started</a>
 {{!-- <div class="nav-right"> --}}
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" id="nav-search" placeholder=">" aria-label="Search">
+    <form class="form-inline" method="GET" action="/boards">
+        <input class="form-control mr-sm-2" type="search" name="q" id="nav-search" placeholder=">" aria-label="Search">
         {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
     </form>
     <a class="nav-item btn btn-outline-success" href="/create" role="tab">Submit New Board
