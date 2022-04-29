@@ -36,13 +36,12 @@ router.post("/create", async (req, res, next) => {
         createdBy = req.session.passport.user;
     }
 
-    console.log(req.session.passport.user);
-
+    //postedBy: createdBy,
     const submission = {
         name: req.body.name,
         author: req.body.author,      
         tag: req.body.tag,
-        postedBy: createdBy,
+        
         altTag: req.body.altTags.split(','),
         topSVG: req.body.topSVG,
         bottomSVG: req.body.bottomSVG,
@@ -81,7 +80,6 @@ router.get("/image/:id/bottom.svg", async (req, res, next) => {
         const image = await Board.findById(id);
         res.setHeader('Content-Type', 'image/svg+xml');
         res.send(image.bottomSVG);
-        // res.render("boards/new",{userSession: req.session.passport, tags: tagList});
     }catch (err){
         console.log(err);
     }
