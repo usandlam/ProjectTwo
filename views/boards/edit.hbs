@@ -8,37 +8,30 @@
             <p>{{flash}}</p>
         </div>
       {{/if}}    
-      <div class="form-group">
-        <label>Name:
-          <input type="text" name="name" class="form-control" {{#if boardInfo.name}} value="{{boardInfo.name}}" {{/if}}/>
-        </label>    
-      </div>
-       <div class="form-group">
-        <label>Project Type:
-          <select id="tag" name="tag">
+      <div class="form-group form-floating">
+          <input type="text" name="name" class="form-control" id="input-name" placeholder="Name" {{#if boardInfo.name}} value="{{boardInfo.name}}" {{/if}}/>
+          <label for="input-name">Name</label>    
+      </div>        
+       <div class="form-group form-floating">
+          <select class="form-select" id="tag" name="tag">
               {{#each tags}}
               <option value="{{_id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
               {{/each}}
           </select>
-        </label>
-      </div>
-      <div class="form-group">
-        <label>Author:
-          <input type="text" name="author" class="form-control" {{#if boardInfo.author}} value="{{boardInfo.author}}" {{/if}}/>
-        </label>
+        <label for="tag">Project Type:</label>
       </div>      
-      <div class="form-group">
-        <label>Description:
-          <textarea name="description" cols="30" rows="4" class="form-control">{{#if boardInfo.description}}{{boardInfo.description}}{{/if}}</textarea>
-        </label>
+      <div class="form-group form-floating">
+          <input type="text" name="author" class="form-control" id="input-author"{{#if boardInfo.author}} value="{{boardInfo.author}}" {{/if}}/>
+          <label for="input-author">Author</label>
+      </div>             
+      <div class="form-group form-floating">
+        <textarea name="description" id="input-description" class="form-control h-100" cols="30" rows="4" class="form-control" placeholder="Description">{{#if boardInfo.description}}{{boardInfo.description}}{{/if}}</textarea>
+        <label id="input-description">Description: </label>
       </div>
-
-      <div class="form-group">
-        <label>URL:
-          <input type="text" name="url" class="form-control" {{#if boardInfo.url}} value="{{boardInfo.url}}" {{/if}}/>
-        </label>
-      </div>      
- 
+      <div class="form-group form-floating">
+          <input type="text" name="url" class="form-control" id="input-url" placeholder="URL"{{#if boardInfo.url}} value="{{boardInfo.url}}" {{/if}}/>
+          <label for="input-url">URL:</label>
+      </div>              
       <div class="form-group-inline">
         {{!-- <label>Top Board Image (SVG): --}}
           {{!-- <pre><textarea name="topSVG" cols="10" rows="4" class="form-control">{{#if boardInfo.topSVG}}{{boardInfo.topSVG}}{{/if}}</textarea></pre> --}}
@@ -51,13 +44,10 @@
           {{!-- <input type="file" name="movie-cover-image" class="form-control-file" /> --}}
         </label>        
       </div>
-
-      <div class="form-group">
-        <label>Secondary Tags: (separated by commas)
-            <textarea name="altTags" cols="25" rows="1" class="form-control">{{#if boardInfo.altTag}}{{boardInfo.altTag}}{{/if}}</textarea>
-        </label>
+      <div class="form-group form-floating">
+            <textarea name="altTags" cols="25" rows="1" class="form-control" id="input-tags" placeholder=" ">{{#if boardInfo.altTag}}{{boardInfo.altTag}}{{/if}}</textarea>
+            <label for="input-tags">Secondary Tags: (separated by commas)        </label>
       </div>
-
       <div class="form-group">
         <label>Project Includes:</label>
       </div>  

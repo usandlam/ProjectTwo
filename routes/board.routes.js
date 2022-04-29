@@ -15,7 +15,7 @@ router.get("/create", async (req, res, next) => {
         if(!req.session.passport)
             req.flash('info','Boards submitted by non-users are subject to review.')
 
-        // const newTag = await Tag.create({label:'IO'})
+        // const newTag = await Tag.create({label:'PiHat'})
         const featEnum = Board.schema.path('features').options.enum;
 
         const tagList = await Tag.find();
@@ -103,8 +103,11 @@ router.get("/boards/:t", async (req, res, next) => {
             return res.render("list",{boardList: '', flash: req.flash('info')});
         }
         const boards = await Board.find({ 'tag' : tagFilter._id }).populate("tag");
+        if(boards.length == 0 ){
+            req.flash('info','Sorry, no boards of this type yet :( - why not submit one!? Click here to go back.')
+        }
         // const boards = await Board.find().populate("tag");
-        res.render("list",{boardList: boards});
+        res.render("list",{boardList: boards, flash: req.flash('info')});
     }catch (err){
         console.log(err);
     }

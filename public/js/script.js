@@ -9,18 +9,13 @@ document.addEventListener(
 function setCurrentPg(){
   let ele = 'navbar-brand'; //placeholder
   const onPage = window.location.pathname;
-  if(onPage.includes('movie')){
-    if(onPage.includes('create')){
-      document.getElementById('nav-drop').classList.toggle('active');
-      ele = 'nav-drop-movie';
-    }else
-      ele = 'nav-movie';
-  }else if(onPage.includes('celeb')){
-    if(onPage.includes('create')){
-      document.getElementById('nav-drop').classList.toggle('active');
-      ele = 'nav-drop-celeb';
-    }else
-      ele = 'nav-celeb';
+  if(onPage.includes('boards')){
+      // document.getElementById('nav-boards').classList.toggle('active');
+      ele = 'nav-boards';
+  }else if(onPage.includes('main')){
+      ele = 'nav-main';
+  }else if(onPage.includes('profile')){
+    ele = 'nav-profile';
   }else{
       ele = 'nav-home';
   }

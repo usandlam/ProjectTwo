@@ -44,6 +44,15 @@ h1 {
   background-position-x: right;
 }
 
+#nav-logout {
+  border: 2px solid transparent;  
+}
+
+#nav-logout:hover, #nav-logout:focus {
+  border-color: #333;
+  isolation: isolate;
+}
+
 /* #navbar-brand{
 
 } */
