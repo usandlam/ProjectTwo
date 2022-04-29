@@ -27,7 +27,7 @@
     <p class="card-text">{{tag.label}}</p>
     <h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
 
-  <ul class="list-group list-group-flush">
+  {{!-- <ul class="list-group list-group-flush"> --}}
       {{altTag}}
 
       {{features}}
@@ -36,7 +36,7 @@
         {{features}}
       {{/each}}
     {{#each altTag}}
-        <li class="list-group-item">
+        {{!-- <li class="list-group-item">
         <div class="d-flex w-100 justify-content-between">
             {{altTag}}
     <span class="badge "><small>text</small></span>
@@ -44,16 +44,18 @@
         </div>
         <small class="text-muted">More Text</small>            
         
-        </li> 
+        </li>  --}}
     {{/each}}      
-  </ul>
-  <a href="{{url}}" class="btn btn-outline-secondary">View the Project</a>
-  <a href="#" class="btn btn-outline-info">Order Parts</a>
-
-    <form action="/board/{{_id}}/delete" method="POST">
+  {{!-- </ul> --}}
+  <div class="container">
+    <a href="{{url}}" class="btn btn-outline-secondary">View the Project</a>
+    <a href="#" class="btn btn-outline-info">Order Parts</a>
+    <form action="/board/{{_id}}/delete" class="float-right" method="POST">
+    
        <button type="submit" class="btn btn-danger">Delete</button>
          <a href="/board/{{_id}}/edit" class="btn btn-warning">Edit</a>
     </form>
+</div>    
 </div>
 {{/with}}
 </div>
