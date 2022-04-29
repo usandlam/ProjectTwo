@@ -13,7 +13,7 @@ const boardSchema = new Schema(
       url: { type: String, trim: true},
       features: {
           type: [String],
-          enum: ['gerbers','guide'],
+          enum: ['Gerbers','Guide'],
       },
     },
     {

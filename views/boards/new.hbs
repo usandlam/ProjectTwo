@@ -4,10 +4,8 @@
       {{!-- enctype="multipart/form-data" --}}
     <form action="/create" method="POST" > 
       {{#if flash}}
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-info" role="alert">
             <p>{{flash}}</p>
-            {{flash.type}}
-            {{flash.message}}
         </div>
       {{/if}}
       <div class="form-group">
@@ -64,20 +62,18 @@
         <label>Project Includes:</label>
       </div>  
       <div class="form-group">
+        {{#each features}}
             <div class="form-check form-check-inline">
-            <input class="form-check-input" name="features" type="checkbox" value="gerbers" id="check-1">
-            <label class="form-check-label" for="check-1">Gerbers</label>
-            </div>
+            <input class="form-check-input" name="features" type="checkbox" value="{{this}}" id="check-{{@key}}" {{checked}}>
+            <label class="form-check-label" for="check-{{@key}}">{{this}}</label>
+            </div>      
+        {{/each}}
             <div class="form-check form-check-inline">
-            <input class="form-check-input" name="features" type="checkbox" value="guide" id="check-2">
-            <label class="form-check-label" for="check-2">Build Guide</label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input" name="features" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
-            <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+            <input class="form-check-input" name="features" type="checkbox" id="inlineCheckbox3" value="disabled" disabled>
+            <label class="form-check-label" for="inlineCheckbox3">Free Parts (disabled)</label>
             </div>
         
-      </div>      
+      </div> 
  
 
       <button type="submit" class="btn btn-primary">Create</button>

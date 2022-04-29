@@ -42,7 +42,7 @@ app.use(
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
-        maxAge: 900000 // 60 * 1000 ms === 1 min
+        maxAge: 1800000 // 60 * 1000 ms === 1 min
       },
       store: MongoStore.create({
         mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/ProjectTwo'

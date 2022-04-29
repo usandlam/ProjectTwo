@@ -12,11 +12,14 @@ router.get("/new", control(),(req, res, next) => {
 
 router.get("/create", async (req, res, next) => {
     try{
-        // if(!req.session.passport)
-            // req.flash('info','fart')
+        if(!req.session.passport)
+            req.flash('info','Boards submitted by non-users are subject to review.')
+
         // const newTag = await Tag.create({label:'IO'})
+        const featEnum = Board.schema.path('features').options.enum;
+
         const tagList = await Tag.find();
-        res.render("boards/new",{tags: tagList, flash: req.flash('info')});
+        res.render("boards/new",{tags: tagList, features: featEnum, flash: req.flash('info')});
     }catch (err){
         console.log(err);
     }
@@ -25,12 +28,18 @@ router.get("/create", async (req, res, next) => {
 
 
 router.post("/create", async (req, res, next) => {
-    const {name,author,tag,description,url,topSVG,bottomSVG,altTags,features} = req.body;
-    const tagsIn = { altTag: altTags.split(',')};
+    // const {name,author,tag,description,url,topSVG,bottomSVG,altTags,features} = req.body;
+    if(!req.session.passport){
+        const createdBy = 'anon';
+    }else{
+        const createdBy = req.session.passport.user;
+    }
+
     const submission = {
         name: req.body.name ,
         author: req.body.author,      
         tag: req.body.tag,
+        postedBy: createdBy,
         altTag: req.body.altTags.split(','),
         topSVG: req.body.topSVG,
         bottomSVG: req.body.bottomSVG,
@@ -83,6 +92,24 @@ router.get("/boards", async (req, res, next) => {
     }
 });
 
+router.get("/boards/:t", async (req, res, next) => {
+    const label = req.params.t;
+    const query = { label };
+    console.log(query);
+    try{
+        const tagFilter = await Tag.findOne(query).setOptions({ sanitizeFilter: true });
+        if(tagFilter == null){
+            req.flash('info','Sorry, no boards of this type yet :( - why not submit one!? Click here to go back.')
+            return res.render("list",{boardList: '', flash: req.flash('info')});
+        }
+        const boards = await Board.find({ 'tag' : tagFilter._id }).populate("tag");
+        // const boards = await Board.find().populate("tag");
+        res.render("list",{boardList: boards});
+    }catch (err){
+        console.log(err);
+    }
+});
+
 router.get("/list-mini", async (req, res, next) => {
     try{
         const boards = await Board.find().populate("tag");
@@ -101,13 +128,19 @@ router.get("/list/:q", async (req, res, next) => {
         console.log(err);
     }
 });
-                        //control(),
-router.get("/board/:id/edit",  async (req, res, next) => {
+
+router.get("/board/:id/edit", control(), async (req, res, next) => {
     const id = req.params.id;
     const tagList = await Tag.find();
     try{
-        const board = await Board.findById(id);
-        res.render("boards/edit",{tags: tagList, flash: req.flash('info'), boardInfo: board});
+        const board = await Board.findById(id).populate('tag');
+
+        featEnum = Board.schema.path('features').options.enum;
+        
+        tagList.map(t => { if(t.label == board.tag.label){t.selected = 'true'} })
+        const featUI = featEnum.map(v=>{ let checked = ''; if(board.features.includes(v)){ checked = 'checked'} return({label:v,checked}) });
+        
+        res.render("boards/edit",{tags: tagList, flash: req.flash('info'), boardInfo: board, features: featUI});
     }catch (err){
         console.log(err);
     }
@@ -115,15 +148,23 @@ router.get("/board/:id/edit",  async (req, res, next) => {
 
 router.post("/board/:id/edit", async (req, res, next) => {
     const id = req.params.id;
-    console.log(req.body.name);    
-    console.log(req.body.features);    
-    console.log(req.file);    
-    // try{
-    //     const board = await Board.findById(id);
-        res.render("boards/edit");
-    // }catch (err){
-    //     console.log(err);
-    // }
+    const updSubmission = {
+        name: req.body.name ,
+        author: req.body.author,
+        tag: req.body.tag,
+        postedBy: req.session.passport.user,
+        altTag: req.body.altTags.split(','),
+        description: req.body.description,
+        url: req.body.url,
+        features: req.body.features
+    };
+    console.log(updSubmission);
+    try{
+        const board = await Board.findByIdAndUpdate(id,updSubmission);
+        res.redirect("/boards");
+    }catch (err){
+        console.log(err);
+    }
 });
 
 

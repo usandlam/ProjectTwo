@@ -17,7 +17,7 @@
         <label>Project Type:
           <select id="tag" name="tag">
               {{#each tags}}
-              <option value="{{_id}}">{{label}}</option>
+              <option value="{{_id}}" {{#if selected}}selected{{/if}}>{{label}}</option>
               {{/each}}
           </select>
         </label>
@@ -54,7 +54,7 @@
 
       <div class="form-group">
         <label>Secondary Tags: (separated by commas)
-            <textarea name="altTags" cols="25" rows="1" class="form-control">{{#if boardInfo.altTags}}{{boardInfo.altTags}}{{/if}}</textarea>
+            <textarea name="altTags" cols="25" rows="1" class="form-control">{{#if boardInfo.altTag}}{{boardInfo.altTag}}{{/if}}</textarea>
         </label>
       </div>
 
@@ -62,17 +62,15 @@
         <label>Project Includes:</label>
       </div>  
       <div class="form-group">
+        {{#each features}}
             <div class="form-check form-check-inline">
-            <input class="form-check-input" name="features" type="checkbox" value="gerbers" id="check-1">
-            <label class="form-check-label" for="check-1">Gerbers</label>
-            </div>
+            <input class="form-check-input" name="features" type="checkbox" value="{{label}}" id="check-{{@key}}" {{checked}}>
+            <label class="form-check-label" for="check-{{@key}}">{{label}}</label>
+            </div>      
+        {{/each}}
             <div class="form-check form-check-inline">
-            <input class="form-check-input" name="features" type="checkbox" value="guide" id="check-2">
-            <label class="form-check-label" for="check-2">Build Guide</label>
-            </div>
-            <div class="form-check form-check-inline">
-            <input class="form-check-input" name="features" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
-            <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+            <input class="form-check-input" name="features" type="checkbox" id="inlineCheckbox3" value="disabled" disabled>
+            <label class="form-check-label" for="inlineCheckbox3">Free Parts (disabled)</label>
             </div>
         
       </div>
