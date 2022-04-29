@@ -54,12 +54,13 @@ router.post("/create", async (req, res, next) => {
     try{
         // const newBoard = await Board.create({name,tag,author,description,url,topSVG,bottomSVG,tagsIn,features});
         const newBoard = await Board.create(submission);
+        // return res.render();
     }catch(err){
         res.render("boards/new", { attempt: {name,author,tag,description,url,topSVG,bottomSVG,altTags,features}, tags: tagList });
         console.log(err);
     }
-    // res.redirect("/boards");
-    res.render("boards/new", { attempt: {name,author,tag,description,url,topSVG,bottomSVG,altTags,features}, tags: tagList });
+    res.redirect("/boards");
+    // res.render("boards/new", { attempt: {name,author,tag,description,url,topSVG,bottomSVG,altTags,features}, tags: tagList });
 });
 
 router.get("/image/:id/top.svg", async (req, res, next) => {
@@ -178,7 +179,7 @@ router.post("/board/:id/delete",control(),async (req, res, next) => {
     const id = req.params.id;
     try{
         const deleteBoard = await Board.findByIdAndRemove(id);
-        res.redirect("/list");
+        res.redirect("/boards");
     }catch (err){
         console.log(err);
     }
