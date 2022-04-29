@@ -7,7 +7,7 @@ document.addEventListener(
 );
 
 function setCurrentPg(){
-  let ele = 'navbar-brand'; //placeholder
+  let ele = 'nav-logo'; //placeholder
   const onPage = window.location.pathname;
   if(onPage.includes('boards')){
       // document.getElementById('nav-boards').classList.toggle('active');
@@ -17,7 +17,7 @@ function setCurrentPg(){
   }else if(onPage.includes('profile')){
     ele = 'nav-profile';
   }else{
-      ele = 'nav-home';
+      ele = 'nav-logo';
   }
   document.getElementById(ele).classList.toggle('active');
   document.getElementById(ele).innerHTML += `<span class="sr-only">(current)</span>`;

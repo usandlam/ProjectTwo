@@ -23,13 +23,10 @@
     <div class="col">
         <img src="/image/{{id}}/bottom.svg" class="detail-pg-img" alt="">
     </div> --}}
-
-  <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
     <p class="card-text">{{tag.label}}</p>
     <h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
-    </div>
-  
+
   <ul class="list-group list-group-flush">
       {{altTag}}
 
@@ -50,12 +47,13 @@
         </li> 
     {{/each}}      
   </ul>
-    <div class="card-body">
+  <a href="{{url}}" class="btn btn-outline-secondary">View the Project</a>
+  <a href="#" class="btn btn-outline-info">Order Parts</a>
+
     <form action="/board/{{_id}}/delete" method="POST">
        <button type="submit" class="btn btn-danger">Delete</button>
-         <a href="/board/{{_id}}/edit" class="btn btn-info">Edit</a>
+         <a href="/board/{{_id}}/edit" class="btn btn-warning">Edit</a>
     </form>
-    </div>
 </div>
 {{/with}}
 </div>

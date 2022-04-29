@@ -96,10 +96,28 @@ router.get("/boards", async (req, res, next) => {
     }
 });
 
+router.get("/boards/search", async (req, res, next) => {
+    const label = req.query.q;
+    const query = { label };
+    try{
+        const tagFilter = await Tag.findOne(query).setOptions({ sanitizeFilter: true });
+        if(tagFilter == null){
+            req.flash('info','Sorry, no boards of this type yet :( - why not submit one!? Click here to go back.')
+            return res.render("list",{boardList: '', flash: req.flash('info')});
+        }
+        const boards = await Board.find({ 'tag' : tagFilter._id }).populate("tag");
+        if(boards.length == 0 ){
+            req.flash('info','Sorry, no boards of this type yet :( - why not submit one!? Click here to go back.')
+        }
+        res.render("list",{boardList: boards, flash: req.flash('info')});
+    }catch (err){
+        console.log(err);
+    }
+});
+
 router.get("/boards/:t", async (req, res, next) => {
     const label = req.params.t;
     const query = { label };
-    console.log(query);
     try{
         const tagFilter = await Tag.findOne(query).setOptions({ sanitizeFilter: true });
         if(tagFilter == null){
@@ -116,6 +134,7 @@ router.get("/boards/:t", async (req, res, next) => {
         console.log(err);
     }
 });
+
 
 router.get("/list-mini", async (req, res, next) => {
     try{

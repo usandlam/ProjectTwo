@@ -14,7 +14,7 @@ h1 {
 
 
 #board-card{
-  max-width: 20rem;
+  /* max-width: 20rem; */
   max-height: 8rem;
   min-width: 20rem;
   min-height: 8rem;  
@@ -64,7 +64,11 @@ h1 {
 
 #board-preview{
   width: 25rem;
-  background-color: grey;
+  background-color:  #555;
+}
+
+#footer {
+  background-color: rgb(162 167 174 / 30%)!important;  
 }
 
 .scene {
