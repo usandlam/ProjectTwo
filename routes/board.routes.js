@@ -28,15 +28,18 @@ router.get("/create", async (req, res, next) => {
 
 
 router.post("/create", async (req, res, next) => {
-    // const {name,author,tag,description,url,topSVG,bottomSVG,altTags,features} = req.body;
+    const {name,author,tag,description,url,topSVG,bottomSVG,altTags,features} = req.body;
+    let createdBy = '';
     if(!req.session.passport){
-        const createdBy = 'anon';
+        createdBy = '';
     }else{
-        const createdBy = req.session.passport.user;
+        createdBy = req.session.passport.user;
     }
 
+    console.log(req.session.passport.user);
+
     const submission = {
-        name: req.body.name ,
+        name: req.body.name,
         author: req.body.author,      
         tag: req.body.tag,
         postedBy: createdBy,

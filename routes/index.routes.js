@@ -8,7 +8,6 @@ const userTrack = require('../middleware/userTrack.js')
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  console.log(req.session);
   res.render("index"); //,{ flash: req.flash('error') }
 });
 
